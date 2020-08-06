@@ -11,20 +11,26 @@ import './menu-item.scss'
 					linkUrl: 'shop/hats'
 					param0 
  */
-const MenuItem = ({ data, history, match }) => (
-	<div className={`${data?.size} menu-item`} onClick={() => {
-		console.log(`prueba ${match.url}`);
-		history.push(`${match.url}${data.linkUrl}`);
-	}}>
-		<div className="background-image" style={{
-			backgroundImage: `url(${data.imageUrl})`
+const MenuItem = ({ data, history, match }) => {
+	let myClassName = 'menu-item';
+	if (data.size) {
+		myClassName += ` ${data.size}`;
+	}
+	return (
+		<div className={`${myClassName}`} onClick={() => {
+			console.log(`prueba ${match.url}`);
+			history.push(`${match.url}${data.linkUrl}`);
 		}}>
-		</div>
-		<div className="content">
-			<h1 className="title">{data.title}</h1>
-			<span className="subtitle">Shop now</span>
-		</div>
-	</div >
-);
+			<div className="background-image" style={{
+				backgroundImage: `url(${data.imageUrl})`
+			}}>
+			</div>
+			<div className="content">
+				<h1 className="title">{data.title}</h1>
+				<span className="subtitle">Shop now</span>
+			</div>
+		</div >
+	)
+};
 
 export default withRouter(MenuItem);
